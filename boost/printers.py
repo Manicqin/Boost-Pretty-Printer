@@ -214,7 +214,7 @@ class BoostIteratorRange:
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             if self.item == self.end:
                 raise StopIteration
             count = self.count
@@ -258,7 +258,7 @@ class BoostOptional:
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             if(self.done):
                 raise StopIteration
             self.done = True
@@ -374,7 +374,7 @@ class BoostCircular:
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             if self.count == self.size:
                 raise StopIteration
             count = self.count
@@ -537,7 +537,7 @@ class BoostIntrusiveRbtreeIterator:
             currentElementAddress = self.node.cast(gdb.lookup_type("size_t")) - self.memberOffset
             return currentElementAddress.cast(self.elementPointerType)
 
-    def next(self):
+    def __next__(self):
         # empty set or reached rightmost leaf
         if not self.node:
             raise StopIteration
@@ -576,8 +576,8 @@ class BoostIntrusiveSet:
         def __iter__(self):
             return self
 
-        def next(self):
-            item = self.rbiter.next().dereference()
+        def __next__(self):
+            item = self.rbiter.__next__().dereference()
             result = ('[%d]' % self.count, item)
             self.count = self.count + 1
             return result
@@ -663,7 +663,7 @@ class BoostIntrusiveListIterator:
             currentElementAddress = self.node.cast(gdb.lookup_type("size_t")) - self.memberOffset
             return currentElementAddress.cast(self.elementPointerType)
 
-    def next(self):
+    def __next__(self):
         # empty list or reached end
         if not self.node:
             raise StopIteration
@@ -690,8 +690,8 @@ class BoostIntrusiveList:
         def __iter__(self):
             return self
 
-        def next(self):
-            item = self.listiter.next().dereference()
+        def __next__(self):
+            item = self.listiter.__next__().dereference()
             result = ('[%d]' % self.count, item)
             self.count = self.count + 1
             return result
@@ -1062,7 +1062,7 @@ class Boost_Multi_Index:
             pass
         def __iter__(self):
             return self
-        def next(self):
+        def __next__(self):
             raise StopIteration
 
     class na_iterator:
@@ -1071,7 +1071,7 @@ class Boost_Multi_Index:
             self.index_type = index_type
         def __iter__(self):
             return self
-        def next(self):
+        def __next__(self):
             if not self.saw_msg:
                 self.saw_msg = True
                 return (self.index_type, 'printer not implemented')
@@ -1101,7 +1101,7 @@ class Boost_Multi_Index:
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             if self.crt == self.last and self.saw_last:
                 raise StopIteration
             crt = self.crt
@@ -1150,7 +1150,7 @@ class Boost_Multi_Index:
         def __iter__(self):
             return self
 
-        def next(self):
+        def __next__(self):
             if self.crt == self.end:
                 raise StopIteration
             crt = self.crt
