@@ -1,3 +1,10 @@
+This is a fork is for use in case the GDB Python Api uses Cython instead of Python.
+If you get problems with the code it means you need to use the original.
+for more info:
+
+http://stackoverflow.com/questions/20681491/pretty-printing-with-gdb-failes-to-show-container-values/20681492#20681492
+
+
 # -*- mode:org; mode:visual-line; coding:utf-8; -*-
 GDB (the [[http://sourceware.org/gdb/][GNU Debugger]]) Pretty Printers for [[http://boost.org][Boost]]
 
